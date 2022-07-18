@@ -754,6 +754,23 @@ static struct iio_chan_spec_ext_info axiadc_ext_info[] = {
 			.shift = _shift,				\
 	  },								\
 	}
+
+#define AIM_CHAN_NOCALIB_128(_chan, _si, _bits, _sign, _shift)		\
+	{ .type = IIO_VOLTAGE,						\
+	  .indexed = 1,							\
+	  .channel = _chan,						\
+	  .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
+				      BIT(IIO_CHAN_INFO_SAMP_FREQ),	\
+	  .ext_info = axiadc_ext_info,			\
+	  .scan_index = _si,						\
+	  .scan_type = {						\
+			.sign = _sign,					\
+			.realbits = _bits,				\
+			.storagebits = 128,				\
+			.shift = _shift,				\
+	  },								\
+	}
+
 static const struct axiadc_chip_info ad9467_chip_tbl[] = {
 	[ID_AD9467] = {
 		.name = "AD9467",
@@ -868,8 +885,9 @@ static const struct axiadc_chip_info ad9467_chip_tbl[] = {
 		.scale_table = mach1_scale_table,
 		.num_scales = ARRAY_SIZE(mach1_scale_table),
 		.max_testmode = AN877_ADC_TESTMODE_MIXED_BIT_FREQUENCY,
-		.num_channels = 1,
+		.num_channels = 2,
 		.channel[0] = AIM_CHAN_NOCALIB_32(0, 0, 20, 'S', 0),
+		.channel[0] = AIM_CHAN_NOCALIB_128(0, 0, 80, 'S', 0),
 	},
 };
 
