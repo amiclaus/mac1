@@ -1,6 +1,6 @@
 /***************************************************************************//**
  *   @file   ad4080.h
- *   @brief  Header file of ad4080 Driver.
+ *   @brief  Header file of AD4080 Driver.
  *   @author Antoniu Miclaus (antoniu.miclaus@analog.com)
 ********************************************************************************
  * Copyright 2022(c) Analog Devices, Inc.
